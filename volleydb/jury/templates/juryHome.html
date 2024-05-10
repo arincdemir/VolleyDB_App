@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jury Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1>
+    <h2>Your average session rating:</h2>
+    <p>{{ avg_rating }}</p>
+    <h2>Total rated sessions</h2>
+    <p>{{ total_rates }}</p>
+
+    <h2>Matches you've been assigned to:</h2>
+    <p>Session ID, Date, Rating</p>
+    <ul>
+    {% for match in assigned_matches %}
+        <li>{{ match.session_ID }},  {{ match.date }}, {{match.rating}}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Rate match:</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="session_ID">Session ID:</label><br>
+        <input type="text" id="session_ID" name="session_ID"><br>
+        <label for="rating">Rating:</label><br>
+        <input type="text" id="rating" name="rating"><br>
+        <input type="submit" value="Rate">
+</body>
+</html>
