@@ -1,0 +1,20 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1>
+    <h2>Players you've played with:</h2>
+    <ul>
+    {% for player in played_with %}
+        <li>{{ player.name }} {{ player.surname }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Average height of player(s) you've played with the most:</h2>
+    <p>{{ avg_height }}</p>
+</body>
+</html>

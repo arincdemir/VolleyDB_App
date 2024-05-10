@@ -22,4 +22,7 @@ urlpatterns = [
     path("", include("home.urls")),
     path("login/", include("login.urls")),  
     path("manager/", include("manager.urls")),
+    path("coach/", include("coach.urls")),
+    path("jury/", include("jury.urls")),
+    path("player/", include("player.urls"))
 ]

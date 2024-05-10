@@ -31,7 +31,7 @@ def coachLogin(request):
             row = cursor.fetchone()
             if row:
                 request.session['username'] = username
-                return HttpResponseRedirect('/manager/')
+                return HttpResponseRedirect('/coach/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})
 
@@ -48,7 +48,7 @@ def juryLogin(request):
             row = cursor.fetchone()
             if row:
                 request.session['username'] = username
-                return HttpResponseRedirect('/manager/')
+                return HttpResponseRedirect('/jury/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})
 
@@ -65,7 +65,7 @@ def playerLogin(request):
             row = cursor.fetchone()
             if row:
                 request.session['username'] = username
-                return HttpResponseRedirect('/manager/')
+                return HttpResponseRedirect('/player/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})
 
