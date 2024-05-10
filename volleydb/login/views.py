@@ -13,6 +13,7 @@ def managerLogin(request):
             cursor.execute("SELECT * FROM DatabaseManager WHERE username = %s AND password = %s", [username, password])
             row = cursor.fetchone()
             if row:
+                request.session['username'] = username
                 return HttpResponseRedirect('/manager/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})
@@ -29,6 +30,7 @@ def coachLogin(request):
             cursor.execute("SELECT * FROM Coach WHERE username = %s AND password = %s", [username, password])
             row = cursor.fetchone()
             if row:
+                request.session['username'] = username
                 return HttpResponseRedirect('/manager/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})
@@ -45,6 +47,7 @@ def juryLogin(request):
             cursor.execute("SELECT * FROM Jury WHERE username = %s AND password = %s", [username, password])
             row = cursor.fetchone()
             if row:
+                request.session['username'] = username
                 return HttpResponseRedirect('/manager/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})
@@ -61,6 +64,7 @@ def playerLogin(request):
             cursor.execute("SELECT * FROM Player WHERE username = %s AND password = %s", [username, password])
             row = cursor.fetchone()
             if row:
+                request.session['username'] = username
                 return HttpResponseRedirect('/manager/')
             else:
                 return render(request, 'login.html', {'error': 'Invalid username or password'})

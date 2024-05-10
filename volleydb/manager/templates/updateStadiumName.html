@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h2>Add Jury</h2>
+    <form action="/manager/addJury" method="post">
+        {% csrf_token %}
+        <label for="stadiumID">Stadium ID:</label><br>
+        <input type="text" id="stadiumID" name="stadiumID" required><br>
+        <label for="newName">New Name:</label><br>
+        <input type="text" id="newName" name="newName" required><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <p> {{outcome}}</p>
+</body>
+</html>
