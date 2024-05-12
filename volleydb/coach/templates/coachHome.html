@@ -1,0 +1,22 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coach Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1>
+    <p><a href="deleteMatch">Delete Match Session</a></p>
+    <p><a href="addMatch">Add Match Session</a></p>
+    <p><a href="createSquad">Create Squad</a></p>
+
+    <h2>Stadiums</h2>
+    <ul>
+        {% for stadium in stadiums %}
+            <li>{{ stadium.name }}: {{stadium.country}}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coach Create Squad</title>
+    <script>
+        function addInput() {
+            var div = document.createElement('div');
+
+            var nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.name = 'name[]';
+            nameInput.placeholder = 'Name';
+            div.appendChild(nameInput);
+
+            var surnameInput = document.createElement('input');
+            surnameInput.type = 'text';
+            surnameInput.name = 'surname[]';
+            surnameInput.placeholder = 'Surname';
+            div.appendChild(surnameInput);
+
+            document.getElementById('inputContainer').appendChild(div);
+        }
+    </script>
+</head>
+<body>
+    <h2>Create Squad</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div id="inputContainer">
+            <div>
+            <input type="text" id="name" name="name[]" placeholder="Name">
+            <input type="text" id="surname" name="surname[]" placeholder="Surname">
+            </div>
+        </div>
+        <button type="button" onclick="addInput()">Add Player</button>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+</body>
+</html>

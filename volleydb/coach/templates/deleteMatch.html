@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coach Delete Match</title>
+</head>
+<body>
+    <h2>Delete Match From ID</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" id="matchId" name="matchId" placeholder="Match ID">
+        <button type="submit" id="deleteMatch">Delete Match</button>
+    </form>
+
+    <h2>Matches</h2>
+    <ul>
+        {% for match in matches %}
+            <li>{{ match.id }}, {{match.stadiumName}}, {{match.date}}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

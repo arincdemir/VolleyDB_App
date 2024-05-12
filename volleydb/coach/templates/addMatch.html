@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coach Add Match</title>
+</head>
+<body>
+    <h2>Delete Match From ID</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p><input type="text" id="stadiumID" name="stadiumID" placeholder="Stadium ID"></p>
+        <p><input type="text" id="date" name="date" placeholder="Date"></p>
+        <p><input type="text" id="timeSlot" name="timeSlot" placeholder="Time Slot"></p>
+        <p><input type="text" id="juryName" name="juryName" placeholder="Jury Name"></p>
+        <p><input type="text" id="jurySurname" name="jurySurname" placeholder="Jury Surname"></p>
+        <button type="submit" id="deleteMatch">Add Match</button>
+    </form>
+
+
+</body>
+</html>
