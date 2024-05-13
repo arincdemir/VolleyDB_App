@@ -15,4 +15,6 @@ def playerHome(request):
 
     played_with = [Player("John", "Doe"), Player("Jane", "Doe")]
     avg_height = 190
+    
+
     return render(request, "playerHome.html", {"username": username, "played_with" : played_with , "avg_height": avg_height})

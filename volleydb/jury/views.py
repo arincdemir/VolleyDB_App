@@ -1,3 +1,4 @@
+from django.db import connection
 from django.shortcuts import render
 
 # Create your views here.
@@ -15,15 +16,22 @@ class MatchSession:
 def juryHome(request):
     username = request.session.get("username")
 
-    # TODO get avg_rating and total_rates and matches from database
-    avg_rating = 4.5
-    total_rates = 100
-    assigned_matches = [MatchSession(1, 1, 1, "10:00", "2021-01-01", "jury1", 4.5), MatchSession(2, 2, 2, "12:00", "2021-01-01", "jury1", 4.5)]
+    # TODO check if it works    
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT AVG(rating) FROM MatchSession WHERE assigned_jury_username = %s;", [username])
+        avg_rating = cursor.fetchone()[0]
+        cursor.execute("SELECT COUNT(rating) FROM MatchSession WHERE assigned_jury_username = %s;", [username])
+        total_rates = cursor.fetchone()[0]
+        cursor.execute("SELECT * FROM MatchSession WHERE assigned_jury_username = %s;", [username])
+        assigned_matches = [MatchSession(*row) for row in cursor.fetchall()]
 
     if request.method == "POST":
         match_id = request.POST.get("match_id")
         rating = request.POST.get("rating")
-        # TODO update rating in database
+        # TODO check if it works
+        
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE MatchSession SET rating = %s WHERE session_ID = %s;", [rating, match_id])
 
     
     return render(request, "juryHome.html", {"username": username, "avg_rating": avg_rating, "total_rates": total_rates, "assigned_matches": assigned_matches})

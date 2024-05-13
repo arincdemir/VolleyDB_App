@@ -16,9 +16,9 @@ def addCoach(request):
         surname = request.POST['surname']
         nationality = request.POST['nationality']
 
+        # TODO check if it works
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO User (username, password, name, surname, user_type) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, "coach"])
-            cursor.execute("INSERT INTO Coach (username, nationality) VALUES (%s, %s);", [username, nationality])
+            cursor.execute("INSERT INTO Coach (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
 
         # Redirect to the manager home page after successfully adding a coach
         return redirect(managerHome)
@@ -34,6 +34,7 @@ def addJury(request):
         surname = request.POST['surname']
         nationality = request.POST['nationality']
 
+        # TODO check if it works
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO Jury (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
 
@@ -52,9 +53,9 @@ def addPlayer(request):
         height = request.POST['height']
         weight = request.POST['weight']
 
+        # TODO check if it works
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO User (username, password, name, surname, user_type) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, "player"])
-            cursor.execute("INSERT INTO Player (username, date_of_birth, height, weight) VALUES (%s, %s, %s, %s);", [username, date_of_birth, height, weight])
+            cursor.execute("INSERT INTO Player (username, password, name, surname, date_of_birth, height, weight) VALUES (%s, %s, %s, %s, %s, %s, %s);", [username, password, name, surname, date_of_birth, height, weight])
 
         # Redirect to the manager home page after successfully adding a coach
         return redirect(managerHome)
