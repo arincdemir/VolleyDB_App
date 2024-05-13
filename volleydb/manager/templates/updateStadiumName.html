@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Change Stadium Name</title>
 </head>
 <body>
-    <h2>Add Jury</h2>
-    <form action="/manager/addJury" method="post">
+    <h2>Change Stadium Name</h2>
+    <form method="post">
         {% csrf_token %}
         <label for="stadiumID">Stadium ID:</label><br>
         <input type="text" id="stadiumID" name="stadiumID" required><br>
