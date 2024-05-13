@@ -41,6 +41,13 @@ CREATE TABLE Jury
     PRIMARY KEY (username)
 );
 
+CREATE TABLE Channels
+(
+	channel_ID	INT,
+    channel_name  VARCHAR(512),
+    PRIMARY KEY (channel_ID)
+);
+
 CREATE TABLE Team 
 (
     team_ID	INT,
@@ -49,9 +56,10 @@ CREATE TABLE Team
     contract_start	VARCHAR(512),
     contract_finish	VARCHAR(512),
     channel_ID	INT,
-    channel_name	VARCHAR(512),
     PRIMARY KEY (team_ID),
-    FOREIGN KEY (coach_username) REFERENCES Coach(username)
+    FOREIGN KEY (coach_username) REFERENCES Coach(username),
+	FOREIGN KEY (channel_ID) REFERENCES Channels(channel_ID)
+
 );
 
 CREATE TABLE PlayerTeams 
@@ -120,6 +128,8 @@ CREATE TABLE SessionSquads
 
 
 
+
+
 INSERT INTO DatabaseManager (username, password) VALUES ('Bob', 'Bob');
 INSERT INTO DatabaseManager (username, password) VALUES ('Kevin', 'Kevin');
 INSERT INTO DatabaseManager (username, password) VALUES ('sorunlubirarkadas', 'muvaffakiyetsizleştiricileştiriveremeyebileceklerimizdenmişsinizcesine');
@@ -149,6 +159,10 @@ INSERT INTO Player (username, password, name, surname, date_of_birth, height, we
 INSERT INTO Player (username, password, name, surname, date_of_birth, height, weight) VALUES ('user_3000', 'P.73005', 'Stephanie', 'White', '19/5/2002', '193', '74');
 INSERT INTO Player (username, password, name, surname, date_of_birth, height, weight) VALUES ('user_8323', 'P.33562', 'Daenerys', 'Targaryen', '16/9/2006', '222', '74');
 
+INSERT INTO Channels (channel_ID, channel_name) VALUES ('0', 'BeIN Sports');
+INSERT INTO Channels (channel_ID, channel_name) VALUES ('1', 'Digiturk');
+INSERT INTO Channels (channel_ID, channel_name) VALUES ('2', 'TRT');
+
 INSERT INTO Coach (username, password, name, surname, nationality) VALUES ('d_santarelli', 'santa.really1', 'Daniele ', 'Santarelli', 'ITA');
 INSERT INTO Coach (username, password, name, surname, nationality) VALUES ('g_guidetti', 'guidgio.90', 'Giovanni ', 'Guidetti', 'ITA');
 INSERT INTO Coach (username, password, name, surname, nationality) VALUES ('f_akbas', 'a.fatih55', 'Ferhat ', 'Akbaş', 'TR');
@@ -162,13 +176,13 @@ INSERT INTO Jury (username, password, name, surname, nationality) VALUES ('e_sen
 INSERT INTO Jury (username, password, name, surname, nationality) VALUES ('s_engin', 'sinan.6893', 'Sinan', 'Engin', 'TR');
 
 
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('0', 'Women A', 'd_santarelli', '25.12.2021', '12.12.2025', '0', 'BeIN Sports');
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('1', 'Women B', 'g_guidetti', '11.09.2021', '11.09.2026', '1', 'Digiturk');
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('2', 'U19', 'f_akbas', '10.08.2021', '10.08.2026', '0', 'BeIN Sports');
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('3', 'Women B', 'f_akbas', '10.08.2000', '10.08.2015', '1', 'Digiturk');
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('4', 'Women C', 'm_hebert', '01.04.2024', '21.07.2026', '1', 'Digiturk');
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('5', 'U19', 'o_deriviere', '10.08.2015', '09.08.2020', '2', 'TRT');
-INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID, channel_name) VALUES ('6', 'U19', 'a_derune', '10.08.2005', '10.08.2010', '2', 'TRT');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('0', 'Women A', 'd_santarelli', '25.12.2021', '12.12.2025', '0');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('1', 'Women B', 'g_guidetti', '11.09.2021', '11.09.2026', '1');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('2', 'U19', 'f_akbas', '10.08.2021', '10.08.2026', '0');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('3', 'Women B', 'f_akbas', '10.08.2000', '10.08.2015', '1');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('4', 'Women C', 'm_hebert', '01.04.2024', '21.07.2026', '1');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('5', 'U19', 'o_deriviere', '10.08.2015', '09.08.2020', '2');
+INSERT INTO Team (team_ID, team_name, coach_username, contract_start, contract_finish, channel_ID) VALUES ('6', 'U19', 'a_derune', '10.08.2005', '10.08.2010', '2');
 
 INSERT INTO Stadium (stadium_ID, stadium_name, stadium_country) VALUES ('0', 'Burhan Felek Voleybol Salonu', 'TR');
 INSERT INTO Stadium (stadium_ID, stadium_name, stadium_country) VALUES ('1', 'GD Voleybol Arena', 'TR');
