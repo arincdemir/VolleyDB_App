@@ -13,9 +13,10 @@
     </form>
 
     <h2>Matches</h2>
+    <p>matchID, teamID, stadiumID, timeSlot, date, jury, rating</p>
     <ul>
         {% for match in matches %}
-            <li>{{ match.id }}, {{match.stadiumName}}, {{match.date}}</li>
+            <li>{{ match.id }}, {{match.teamID}}, {{match.stadiumID}}, {{match.timeSlot}},  {{match.date}}, {{match.jury}}, {{match.rating}}</li>
         {% endfor %}
     </ul>
 

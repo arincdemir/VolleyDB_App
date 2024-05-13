@@ -18,18 +18,25 @@
             surnameInput.placeholder = 'Surname';
             div.appendChild(surnameInput);
 
+            var positionInput = document.createElement('input');
+            positionInput.type = 'text';
+            positionInput.name = 'position[]';
+            positionInput.placeholder = 'PositionID';
+            div.appendChild(positionInput);
+
             document.getElementById('inputContainer').appendChild(div);
         }
     </script>
 </head>
 <body>
-    <h2>Create Squad</h2>
+    <h2>Create Squad for {{matchId}}</h2>
     <form method="post">
         {% csrf_token %}
         <div id="inputContainer">
             <div>
             <input type="text" id="name" name="name[]" placeholder="Name">
             <input type="text" id="surname" name="surname[]" placeholder="Surname">
+            <input type="text" id="position" name="position[]" placeholder="PositionID">
             </div>
         </div>
         <button type="button" onclick="addInput()">Add Player</button>

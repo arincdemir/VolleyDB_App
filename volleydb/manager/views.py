@@ -16,7 +16,6 @@ def addCoach(request):
         surname = request.POST['surname']
         nationality = request.POST['nationality']
 
-        # TODO check if it works
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO Coach (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
 
@@ -34,7 +33,6 @@ def addJury(request):
         surname = request.POST['surname']
         nationality = request.POST['nationality']
 
-        # TODO check if it works
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO Jury (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
 
@@ -53,7 +51,6 @@ def addPlayer(request):
         height = request.POST['height']
         weight = request.POST['weight']
 
-        # TODO check if it works
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO Player (username, password, name, surname, date_of_birth, height, weight) VALUES (%s, %s, %s, %s, %s, %s, %s);", [username, password, name, surname, date_of_birth, height, weight])
 
@@ -67,7 +64,6 @@ def updateStadiumName(request):
         stadiumID = request.POST['stadiumID']
         newName = request.POST['newName']
 
-        # TODO update the stadium name
         with connection.cursor() as cursor:
             cursor.execute("UPDATE Stadium SET stadium_name = %s WHERE Stadium_id = %s;", [newName, stadiumID])
 

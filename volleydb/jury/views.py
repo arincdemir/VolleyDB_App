@@ -16,7 +16,6 @@ class MatchSession:
 def juryHome(request):
     username = request.session.get("username")
 
-    # TODO check if it works    
     with connection.cursor() as cursor:
         cursor.execute("SELECT AVG(rating) FROM MatchSession WHERE assigned_jury_username = %s;", [username])
         avg_rating = cursor.fetchone()[0]
@@ -26,12 +25,10 @@ def juryHome(request):
         assigned_matches = [MatchSession(*row) for row in cursor.fetchall()]
 
     if request.method == "POST":
-        match_id = request.POST.get("match_id")
+        match_id = request.POST.get("session_ID")
         rating = request.POST.get("rating")
-        # TODO check if it works
         
         with connection.cursor() as cursor:
             cursor.execute("UPDATE MatchSession SET rating = %s WHERE session_ID = %s;", [rating, match_id])
 
-    
     return render(request, "juryHome.html", {"username": username, "avg_rating": avg_rating, "total_rates": total_rates, "assigned_matches": assigned_matches})
