@@ -87,6 +87,15 @@ CREATE TABLE PlayerPositions
 
 );
 
+
+CREATE TABLE Stadium
+(
+	Stadium_id INT,
+    stadium_name	VARCHAR(512),
+    stadium_country	VARCHAR(512),
+    PRIMARY KEY (Stadium_id)
+);
+
 CREATE TABLE MatchSession 
 (
     session_ID	INT,
@@ -115,13 +124,6 @@ CREATE TABLE SessionSquads
     FOREIGN KEY (position_ID) REFERENCES Positionn(position_ID)
 );
 
-CREATE TABLE Stadium
-(
-	Stadium_id INT,
-    stadium_name	VARCHAR(512),
-    stadium_country	VARCHAR(512),
-    PRIMARY KEY (Stadium_id)
-);
 
 DELIMITER //
 CREATE TRIGGER prevent_overlapping_games
