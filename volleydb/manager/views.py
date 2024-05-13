@@ -35,8 +35,7 @@ def addJury(request):
         nationality = request.POST['nationality']
 
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO User (username, password, name, surname, user_type) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, "jury"])
-            cursor.execute("INSERT INTO Coach (username, nationality) VALUES (%s, %s);", [username, nationality])
+            cursor.execute("INSERT INTO Jury (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
 
         # Redirect to the manager home page after successfully adding a coach
         return redirect(managerHome)
@@ -69,9 +68,7 @@ def updateStadiumName(request):
 
         # TODO update the stadium name
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO Player (username, password, name, surname, date_of_birth, height, weight) VALUES (%s, %s, %s, %s, %s, %s, %s);", [username, password, name, surname, date_of_birth, height, weight])
-            row = cursor.fetchone()
-            print(row)
+            cursor.execute("UPDATE Stadium SET stadium_name = %s WHERE Stadium_id = %s;", [newName, stadiumID])
 
         # Redirect to the manager home page after successfully adding a coach
         return redirect(managerHome)
