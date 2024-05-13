@@ -87,6 +87,14 @@ CREATE TABLE PlayerPositions
 
 );
 
+CREATE TABLE Stadium
+(
+	Stadium_id INT,
+    stadium_name	VARCHAR(512),
+    stadium_country	VARCHAR(512),
+    PRIMARY KEY (Stadium_id)
+);
+
 CREATE TABLE MatchSession 
 (
     session_ID	INT,
@@ -115,13 +123,7 @@ CREATE TABLE SessionSquads
     FOREIGN KEY (position_ID) REFERENCES Positionn(position_ID)
 );
 
-CREATE TABLE Stadium
-(
-	Stadium_id INT,
-    stadium_name	VARCHAR(512),
-    stadium_country	VARCHAR(512),
-    PRIMARY KEY (Stadium_id)
-);
+
 
 DELIMITER //
 CREATE TRIGGER prevent_overlapping_games
@@ -180,7 +182,9 @@ DELIMITER ;
 
 
 
-
+INSERT INTO Player (username, password) VALUES ('Bob', 'Bob');
+INSERT INTO Player (username, password) VALUES ('Kevin', 'Kevin');
+INSERT INTO Player (username, password) VALUES ('sorunlubirarkadas', 'muvaffakiyetsizleştiricileştiriveremeyebileceklerimizdenmişsinizcesine');
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('1', '0', 'g_orge', '0');
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('2', '0', 'c_ozbay', '1');
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('3', '0', 'm_vargas', '2');
