@@ -121,7 +121,7 @@ CREATE TABLE SessionSquads
     played_player_username	VARCHAR(512),
     position_ID	INT,
     PRIMARY KEY (squad_ID),
-    FOREIGN KEY (session_ID) REFERENCES MatchSession(session_ID),
+    FOREIGN KEY (session_ID) REFERENCES MatchSession(session_ID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (played_player_username) REFERENCES Player(username),
     FOREIGN KEY (position_ID) REFERENCES Positionn(position_ID)
 );
