@@ -91,9 +91,7 @@ CREATE TABLE MatchSession
 (
     session_ID	INT,
     team_ID	INT,
-    stadium_ID	INT,
-    stadium_name	VARCHAR(512),
-    stadium_country	VARCHAR(512),
+    stadium_id	INT,
     time_slot	INT,
     date	VARCHAR(512),
     assigned_jury_username	VARCHAR(512) NOT NULL,
@@ -101,7 +99,8 @@ CREATE TABLE MatchSession
     PRIMARY KEY (session_ID),
     UNIQUE (assigned_jury_username, session_ID), -- Ensuring each session is rated only once by each jury
     FOREIGN KEY (team_ID) REFERENCES Team(team_ID),
-    FOREIGN KEY (assigned_jury_username) REFERENCES Jury(username)
+    FOREIGN KEY (assigned_jury_username) REFERENCES Jury(username),
+    FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id)
 );
 
 CREATE TABLE SessionSquads 
@@ -114,6 +113,14 @@ CREATE TABLE SessionSquads
     FOREIGN KEY (session_ID) REFERENCES MatchSession(session_ID),
     FOREIGN KEY (played_player_username) REFERENCES Player(username),
     FOREIGN KEY (position_ID) REFERENCES Positionn(position_ID)
+);
+
+CREATE TABLE Stadium
+(
+	Stadium_id INT,
+    stadium_name	VARCHAR(512),
+    stadium_country	VARCHAR(512),
+    PRIMARY KEY (Stadium_id)
 );
 
 DELIMITER //
