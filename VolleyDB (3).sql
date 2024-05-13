@@ -182,7 +182,8 @@ INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assi
 INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('5', '3', '1', '1', '27.05.2023', 's_engin', '4.4');
 INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('6', '0', '1', '1', '01.09.2022', 'm_sevinc', '4.6');
 INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('7', '0', '2', '3', '02.05.2023', 'o_ozcelik', '4.7');
-INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('8', '1', '0', '1', '10.03.2024', 'o_ozcelik', '4.5');
+INSERT INTO MatchSession (session_ID, team_ID, stadium_ID, time_slot, date, assigned_jury_username, rating) VALUES ('8', '1', '0', '1', '10.03.2024', 'o_ozcelik', '4.5');
+
 
 
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('1', '0', 'g_orge', '0');
