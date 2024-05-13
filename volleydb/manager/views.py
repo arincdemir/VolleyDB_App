@@ -17,12 +17,11 @@ def addCoach(request):
         nationality = request.POST['nationality']
 
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO Coach (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
-            row = cursor.fetchone()
-            print(row)
+            cursor.execute("INSERT INTO User (username, password, name, surname, user_type) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, "coach"])
+            cursor.execute("INSERT INTO Coach (username, nationality) VALUES (%s, %s);", [username, nationality])
 
         # Redirect to the manager home page after successfully adding a coach
-        return render(request, 'managerHome.html', {"outcome" : "added coach successfully"})
+        return redirect(managerHome)
 
     return render(request, 'addCoach.html')
 
@@ -36,12 +35,11 @@ def addJury(request):
         nationality = request.POST['nationality']
 
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO Jury (username, password, name, surname, nationality) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, nationality])
-            row = cursor.fetchone()
-            print(row)
+            cursor.execute("INSERT INTO User (username, password, name, surname, user_type) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, "jury"])
+            cursor.execute("INSERT INTO Coach (username, nationality) VALUES (%s, %s);", [username, nationality])
 
         # Redirect to the manager home page after successfully adding a coach
-        return render(request, 'managerHome.html', {"outcome" : "added jury successfully"})
+        return redirect(managerHome)
 
     return render(request, 'addJury.html')
 
@@ -56,12 +54,11 @@ def addPlayer(request):
         weight = request.POST['weight']
 
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO Player (username, password, name, surname, date_of_birth, height, weight) VALUES (%s, %s, %s, %s, %s, %s, %s);", [username, password, name, surname, date_of_birth, height, weight])
-            row = cursor.fetchone()
-            print(row)
+            cursor.execute("INSERT INTO User (username, password, name, surname, user_type) VALUES (%s, %s, %s, %s, %s);", [username, password, name, surname, "player"])
+            cursor.execute("INSERT INTO Player (username, date_of_birth, height, weight) VALUES (%s, %s, %s, %s);", [username, date_of_birth, height, weight])
 
         # Redirect to the manager home page after successfully adding a coach
-        return render(request, 'managerHome.html', {"outcome" : "added player successfully"})
+        return redirect(managerHome)
 
     return render(request, 'addPlayer.html')
 
@@ -77,7 +74,7 @@ def updateStadiumName(request):
             print(row)
 
         # Redirect to the manager home page after successfully adding a coach
-        return render(request, 'managerHome.html', {"outcome" : "changed stadium name successfully"})
+        return redirect(managerHome)
 
     return render(request, 'updateStadiumName.html')
 
