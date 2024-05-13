@@ -6,9 +6,6 @@ CREATE TABLE DatabaseManager
 (
     username VARCHAR(512),
     password VARCHAR(512),
-    name VARCHAR(512),
-    surname VARCHAR(512),
-    user_type ENUM('player', 'coach', 'jury') NOT NULL CHECK (user_type IN ('player', 'coach', 'jury')),
     PRIMARY KEY (username)
 );
 
@@ -67,7 +64,7 @@ CREATE TABLE PlayerTeams
     player_teams_id	INT,
     username VARCHAR(512),
     team_ID INT NOT NULL,
-    PRIMARY KEY (player_team_ID),
+    PRIMARY KEY (player_teams_id),
     FOREIGN KEY (username) REFERENCES Player(username),
     FOREIGN KEY (team_ID) REFERENCES Team(team_ID)
 );
@@ -99,7 +96,7 @@ CREATE TABLE MatchSession
     stadium_country	VARCHAR(512),
     time_slot	INT,
     date	VARCHAR(512),
-    assigned_jury_username	VARCHAR(512),
+    assigned_jury_username	VARCHAR(512) NOT NULL,
     rating	DOUBLE,
     PRIMARY KEY (session_ID),
     UNIQUE (assigned_jury_username, session_ID), -- Ensuring each session is rated only once by each jury
