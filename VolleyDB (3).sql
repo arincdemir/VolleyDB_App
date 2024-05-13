@@ -9,40 +9,36 @@ CREATE TABLE DatabaseManager
     PRIMARY KEY (username)
 );
 
-CREATE TABLE User 
+CREATE TABLE Player 
 (
     username VARCHAR(512),
     password VARCHAR(512),
     name VARCHAR(512),
     surname VARCHAR(512),
-    user_type ENUM('player', 'coach', 'jury') NOT NULL CHECK (user_type IN ('player', 'coach', 'jury')),
-    PRIMARY KEY (username)
-);
-
-CREATE TABLE Player 
-(
-    username VARCHAR(512),
     date_of_birth VARCHAR(512),
     height INT,
     weight INT,
-    PRIMARY KEY (username),
-    FOREIGN KEY (username) REFERENCES User(username)
+    PRIMARY KEY (username)
 );
 
 CREATE TABLE Coach 
 (
     username VARCHAR(512),
+    password VARCHAR(512),
+    name VARCHAR(512),
+    surname VARCHAR(512),
     nationality VARCHAR(512) NOT NULL,
-    PRIMARY KEY (username),
-    FOREIGN KEY (username) REFERENCES User(username)
+    PRIMARY KEY (username)
 );
 
 CREATE TABLE Jury 
 (
     username VARCHAR(512),
+    password VARCHAR(512),
+    name VARCHAR(512),
+    surname VARCHAR(512),
     nationality VARCHAR(512),
-    PRIMARY KEY (username),
-    FOREIGN KEY (username) REFERENCES User(username)
+    PRIMARY KEY (username)
 );
 
 CREATE TABLE Team 
@@ -180,11 +176,9 @@ END//
 
 DELIMITER ;
 
-
-
-INSERT INTO Player (username, password) VALUES ('Bob', 'Bob');
-INSERT INTO Player (username, password) VALUES ('Kevin', 'Kevin');
-INSERT INTO Player (username, password) VALUES ('sorunlubirarkadas', 'muvaffakiyetsizleştiricileştiriveremeyebileceklerimizdenmişsinizcesine');
+INSERT INTO DatabaseManager (username, password) VALUES ('Bob', 'Bob');
+INSERT INTO DatabaseManager (username, password) VALUES ('Kevin', 'Kevin');
+INSERT INTO DatabaseManager (username, password) VALUES ('sorunlubirarkadas', 'muvaffakiyetsizleştiricileştiriveremeyebileceklerimizdenmişsinizcesine');
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('1', '0', 'g_orge', '0');
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('2', '0', 'c_ozbay', '1');
 INSERT INTO SessionSquads (squad_ID, session_ID, played_player_username, position_ID) VALUES ('3', '0', 'm_vargas', '2');
