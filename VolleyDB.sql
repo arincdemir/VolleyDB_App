@@ -45,7 +45,8 @@ CREATE TABLE Channels
 (
 	channel_ID	INT,
     channel_name  VARCHAR(512),
-    PRIMARY KEY (channel_ID)
+    PRIMARY KEY (channel_ID),
+    UNIQUE(channel_name)
 );
 
 CREATE TABLE Team 
@@ -55,7 +56,7 @@ CREATE TABLE Team
     coach_username	VARCHAR(512) NOT NULL,
     contract_start	VARCHAR(512),
     contract_finish	VARCHAR(512),
-    channel_ID	INT,
+    channel_ID	INT NOT NULL,
     PRIMARY KEY (team_ID),
     FOREIGN KEY (coach_username) REFERENCES Coach(username),
 	FOREIGN KEY (channel_ID) REFERENCES Channels(channel_ID)
@@ -95,7 +96,8 @@ CREATE TABLE Stadium
 	Stadium_id INT,
     stadium_name	VARCHAR(512),
     stadium_country	VARCHAR(512),
-    PRIMARY KEY (Stadium_id)
+    PRIMARY KEY (Stadium_id),
+    UNIQUE(stadium_name)
 );
 
 CREATE TABLE MatchSession 
@@ -375,9 +377,28 @@ BEGIN
     FROM Team T
     WHERE T.coach_username = NEW.coach_username
     AND (T.contract_start <= NEW.contract_finish AND T.contract_finish >= NEW.contract_start);
-
     IF coach_team_count > 0 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Coach already in agreement with another team during the specified contract period';
     END IF;
 END //
+
+DELIMITER ;
+DELIMITER //
+
+CREATE TRIGGER prevent_overlap_match_sessions
+BEFORE INSERT ON MatchSession
+FOR EACH ROW
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM MatchSession
+        WHERE (NEW.stadium_ID = stadium_ID)
+          AND (NEW.date = date)
+          AND ((NEW.time_slot BETWEEN time_slot AND time_slot + 1)
+              OR (NEW.time_slot + 1 BETWEEN time_slot AND time_slot + 1))
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Cannot insert match session. Overlaps with existing session.';
+    END IF;
+END//
 
