@@ -381,16 +381,3 @@ BEGIN
     END IF;
 END //
 
-DELIMITER ;
-
-DELIMITER //
-
-CREATE TRIGGER prevent_insert_database_manager
-BEFORE INSERT ON DatabaseManagers
-FOR EACH ROW
-BEGIN
-    SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Cannot insert new database managers.';
-END//
-
-DELIMITER ;
